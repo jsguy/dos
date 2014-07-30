@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>DOS</title>
+	<!-- Using jQuery as it's easy - we could use any binding library or none at all if we wished. -->
+	<script src="//cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+
+<script src="dos.js"></script>
+
+<div class="bindMe">
+	<div id="testDiv" data-dos="text: test">Value of select box goes here</div>
+
+	<button id="setTestValue">Set test value</button>
+
+	<select id="test" data-dos="value: test">
+		<option>One1!</option>
+		<option value="2">Two</option>
+		<option>Three</option>
+	</select>
+</div>
+
+<script>
+	var Model = function() {
+		this.test = dos();
+	};
+
+	var viewModel = new Model();
+
+	$('.bindMe').dosBind(viewModel);
+
+	//	Set the value just using the model - the select box is automatically updated.
+	$('#setTestValue').click(function(){
+		viewModel.test.set('2');
+	});
+</script>
+
+</body>
+</html>
